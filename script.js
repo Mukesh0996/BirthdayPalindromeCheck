@@ -1,7 +1,12 @@
 const birthdayDate = document.getElementsByClassName('bday')[0];
 
-const text ="Hello Vishnnu viswanath, I'm really sorry to let you know that you're birthday date isn't a lucky one";
-
+const text ="Hello Vishnnu viswanath, I'm really sorry to let you know that you're birthday date isn't lucky as it is not a palindrome";
+var synth = window.speechSynthesis;
+var voices = synth.getVoices();
+console.log("voices are ", voices)
+for(let i=0;i< voices.length;i++) {
+   console.log(voices[i]);
+}
 birthdayDate.addEventListener('change', (e) => {
   
    
@@ -23,7 +28,7 @@ const extractDate = (date) => {
       const [nearestPlaindromeDate, i] = findNearestPalindromeDate(day, month, year);
       const Speech = new SpeechSynthesisUtterance(text); 
       Speech.volume = 1;
-      Speech.rate = 1;
+      Speech.rate = 4;
       Speech.pitch = 1;
       window.speechSynthesis.speak(Speech);
      
