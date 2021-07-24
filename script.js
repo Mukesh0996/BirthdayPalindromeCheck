@@ -26,7 +26,7 @@ const extractDate = (date) => {
       Speech.rate = 1;
       Speech.pitch = 1;
       window.speechSynthesis.speak(Speech);
-      console.log(nearestPlaindromeDate, i);
+     
    }
 }
 
@@ -46,7 +46,6 @@ const checkDiffDateCombinations = (day, month, year) => {
       return `${year}-${month}-${day}`
    }
    else {
-      console.log("not a plindrome");
       return false;
    }
 
@@ -79,7 +78,8 @@ const findNearestPalindromeDate = (day, month, year) => {
 
 
    for (let i = 1; i > 0; i++) {
-         day1 = day1+1;
+
+      day1 = day1+1;
       // if days exceeds total days in month, reset day to 1 and add month with 1
       if (day1 > totalDaysInMonth[month1 - 1]) {
          day1 = 1;
@@ -90,6 +90,7 @@ const findNearestPalindromeDate = (day, month, year) => {
          month1 = 1;
          year1 += year1;
       }
+      // convert day, month and year to strings
       let day1String = day1.toString();
       let month1String = month1.toString();
       let year1String = year1.toString();
