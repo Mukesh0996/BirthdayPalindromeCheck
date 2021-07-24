@@ -1,6 +1,6 @@
 const birthdayDate = document.getElementsByClassName('bday')[0];
 
-const text ="Hello Vishnnu viswanath, you're birthday date isn't a lucky one";
+const text ="Hello Vishnnu viswanath, I'm really sorry to let you know that you're birthday date isn't a lucky one";
 
 birthdayDate.addEventListener('change', (e) => {
   
