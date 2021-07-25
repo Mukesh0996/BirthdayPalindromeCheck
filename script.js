@@ -30,9 +30,10 @@ submitBtn.addEventListener('click', (e) => {
       return;
    }
    loading.style = "display:block";
-   output_text.style.display = "none"
+   output_text.style.display = "none";
+
+   //setting artificial delay
    setTimeout(()=> {
-      
       extractDate(birthdayDate.value);
    },4000)
      
@@ -137,6 +138,7 @@ const findNearestPalindromeDate = (day, month, year) => {
       if (day1 < 10) {
          day1String = "0" + day1String;
       } 
+      // add 0 in front if month is less than 10;
       if (month1 < 10) {
          month1String = "0" + month1String;
       } 
@@ -149,27 +151,33 @@ const findNearestPalindromeDate = (day, month, year) => {
       //backward check
       if(year!=0) {
 
+         // decrement day for reverse count
          day2 = day2 - 1;
+         //reset day to the last day and decrease month by 1 of the previous month if day is less than 1
          if(day2 < 1) {
             day2 = totalDaysInMonth[month2-1];
             month2 =  month2 - 1;
          }
+         // reset month to 12 and decrement year by 1 is month is less than 1
          if(month2 < 1) {
             month2 = 12;
             year2 = year2 - 1;
          }
       }
+     // convert day, month and year to strings
       let day2String = day2.toString();
       let month2String = month2.toString();
       let year2String = year2.toString();
 
+      // add 0 in front if date is less than 10;   
       if(day2<10) {
          day2String = "0" + day2String;
       }
+      // add 0 in front if month is less than 10;
       if(month2 <10) {
          month2String = "0"+ month2String;
       }
-      const reversePalindromeDate = checkDiffDateCombinations(day2String, month2String, year1String);
+      const reversePalindromeDate = checkDiffDateCombinations(day2String, month2String, year2String);
       if(reversePalindromeDate) {
          return [reversePalindromeDate, i];
       }
