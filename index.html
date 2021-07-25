@@ -8,9 +8,29 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
+    <header>
+        <div class="change_background">
+            <input type="checkbox" id="check">
+            <label class="slider" for="check"></label>
+        </div> 
+        <div class="header-section"> 
+            <div class="header-section__title">
+                <h1>Use this app to check if your <span class="h1_span">Birthdate</span> is <span class="h1_span">palindrome</span>.</h1>
+                <h3>A palindrome is a word, phrase, or sequence that reads the same backwards as forwards</h3>       
+            </div>
+            <div class="header_image">
+            </div>
+        </div>
+    </header>
     <section class="main">
-        <h1>Please select your birthday date from the input tag below:</h1>
-        <input style="margin: 1rem auto; padding: 1rem;" class="bday" type="date"/>
+        <div class="main_bday">
+            <h1>Please select your birthday date from the input tag below:</h1>
+            <label for="birthdate">Select your birthdate.</label>
+            <input class="bday" type="date" id="birthdate"/>
+        </div>
+        <div class="output">
+            
+        </div>
     </section>
         
     <script src="./script.js"></script>

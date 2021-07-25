@@ -1,9 +1,13 @@
 const birthdayDate = document.getElementsByClassName('bday')[0];
-
+const checkbox = document.querySelector('input[type="checkbox"]')
 const text ="Mukesh";
 
 birthdayDate.addEventListener('change', (e) => {
      extractDate(e.target.value);
+});
+
+checkbox.addEventListener('change', (e) => {
+   console.log("changed", e.target.checked);
 })
 
 const totalDaysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
@@ -83,11 +87,13 @@ const findNearestPalindromeDate = (day, month, year) => {
          day1 = 1;
          month1 += 1;
       }
+
       //if month is greater than 12, reset month to 1 and increase the year by 1
       if (month1 > 12) {
          month1 = 1;
          year1 += year1;
       }
+
       // convert day, month and year to strings
       let day1String = day1.toString();
       let month1String = month1.toString();
@@ -104,6 +110,7 @@ const findNearestPalindromeDate = (day, month, year) => {
       if (palindromeDate) {
          return [palindromeDate, i];
       }
+      
    }
 
 
