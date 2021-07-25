@@ -48,13 +48,14 @@ const extractDate = (date) => {
    
    const palinDromedate = checkDiffDateCombinations(day, month, year);
    if (palinDromedate) {
-
+      output_text.style.display = "block"
       loading.style = '';
       output_text.innerText = `Wohoo your birthdate(${palindDromedate}) is a palindrome date..`;
 
    } else {
 
       const [nearestPlaindromeDate, i] = findNearestPalindromeDate(day, month, year);
+      output_text.style.display = "block"
       loading.style = '';
       output_text.innerText = `Sorry your birthdate is not a palindrome date. The nearest date is ${nearestPlaindromeDate} and you have missed by ${i} days.`;
    }
@@ -145,7 +146,33 @@ const findNearestPalindromeDate = (day, month, year) => {
       if (palindromeDate) {
          return [palindromeDate, i];
       }
-      
+      //backward check
+      if(year!=0) {
+
+         day2 = day2 - 1;
+         if(day2 < 1) {
+            day2 = totalDaysInMonth[month2-1];
+            month2 =  month2 - 1;
+         }
+         if(month2 < 1) {
+            month2 = 12;
+            year2 = year2 - 1;
+         }
+      }
+      let day2String = day2.toString();
+      let month2String = month2.toString();
+      let year2String = year2.toString();
+
+      if(day2<10) {
+         day2String = "0" + day2String;
+      }
+      if(month2 <10) {
+         month2String = "0"+ month2String;
+      }
+      const reversePalindromeDate = checkDiffDateCombinations(day2String, month2String, year1String);
+      if(reversePalindromeDate) {
+         return [reversePalindromeDate, i];
+      }
    }
 
 
