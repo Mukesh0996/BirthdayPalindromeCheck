@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     <title>Birthday palindrome check</title>
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <header>
+    <header class="header">
         <div class="change_background">
             <input type="checkbox" id="check">
             <label class="slider" for="check"></label>
@@ -24,15 +25,39 @@
     </header>
     <section class="main">
         <div class="main_bday">
-            <h1>Please select your birthday date from the input tag below:</h1>
-            <label for="birthdate">Select your birthdate.</label>
-            <input class="bday" type="date" id="birthdate"/>
+            <h1>Please select your birthdate from the input tag below:</h1>
+            <div class="user_input">
+                <label for="birthdate">Select your birthdate.</label>
+                <input class="bday" type="date" id="birthdate"/>
+            </div>
+            <button class="btn" type="button">Submit</button>
+            <p>This app checks if your birthdate is a palindrome in 4 formats yyyy-mm-dd, dd-mm-yyyy, mm-dd-yy, m-dd-yyyy</p>
         </div>
         <div class="output">
-            
+            <div class="loading"></div>
+            <h1 class="output_text">Result will be shown here..</h1>
         </div>
     </section>
-        
+        <footer class="footer">
+            <div class="footer_header">Connect with me through..</div>
+            <ul class="footer_list">
+                <li class="footer-list__item">
+                    <a href="https://twitter.com/mukesh961996">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </li>
+                <li class="footer-list__item">
+                    <a href="https://www.linkedin.com/in/mukesh-kumar-keerthipati-7993a3169/">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </li>
+                <li class="footer-list__item">
+                    <a href="https://github.com/Mukesh0996">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+            </ul>
+        </footer>
     <script src="./script.js"></script>
 </body>
 </html>

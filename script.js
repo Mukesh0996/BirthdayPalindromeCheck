@@ -1,51 +1,84 @@
+const header = document.getElementsByClassName('header')[0];
+const main = document.getElementsByClassName('main')[0];
+const footer = document.getElementsByClassName('footer')[0];
+
 const birthdayDate = document.getElementsByClassName('bday')[0];
-const checkbox = document.querySelector('input[type="checkbox"]')
-const text ="Mukesh";
-
-birthdayDate.addEventListener('change', (e) => {
-     extractDate(e.target.value);
-});
-
-checkbox.addEventListener('change', (e) => {
-   console.log("changed", e.target.checked);
-})
+const submitBtn = document.querySelector('.btn');
+const loading = document.querySelector('.loading');
+const output_text = document.querySelector('.output_text');
+const checkBox = document.querySelector('input[type="checkbox"]')
 
 const totalDaysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+checkBox.addEventListener('change',(e) => {
+  
+   if(e.target.checked) {
+     header.style.background = '#A8A29E';
+     main.style.background = '#A8A29E';
+     footer.style.background = '#A8A29E'
+   } else {
+      header.style = '';
+     main.style = '';
+     footer.style= ''
+   }
+})
+
+submitBtn.addEventListener('click', (e) => {
+
+   if(birthdayDate.value.length == 0) {
+      output_text.innerText = 'Please select your birthdate from the input tag..'
+      return;
+   }
+   loading.style = "display:block";
+   output_text.style.display = "none"
+   setTimeout(()=> {
+      
+      extractDate(birthdayDate.value);
+   },4000)
+     
+});
+
+
 const extractDate = (date) => {
   
    const dateArr = date.split("-");
    const year = dateArr[0];
    const month = dateArr[1];
    const day = dateArr[2];
-   console.log(day, month, year);
+   
    const palinDromedate = checkDiffDateCombinations(day, month, year);
    if (palinDromedate) {
-      console.log(palinDromedate)
+
+      loading.style = '';
+      output_text.innerText = `Wohoo your birthdate(${palindDromedate}) is a palindrome date..`;
+
    } else {
+
       const [nearestPlaindromeDate, i] = findNearestPalindromeDate(day, month, year);
-      console.log(nearestPlaindromeDate, i)
-      const Speech = new SpeechSynthesisUtterance(text); 
-      Speech.volume = 1;
-      Speech.rate = 1;
-      Speech.pitch = 1;
-      window.speechSynthesis.speak(Speech);
-     
+      loading.style = '';
+      output_text.innerText = `Sorry your birthdate is not a palindrome date. The nearest date is ${nearestPlaindromeDate} and you have missed by ${i} days.`;
    }
 }
 
 const checkDiffDateCombinations = (day, month, year) => {
 
    const formatOne = day + month + year;
-   const formatTwo = day + month + year.split("").slice(2, 4).join("");
+   const formatTwo = month + day + year.split("").slice(2, 4).join("");
    const formatThree = year + month + day;
+   const formatFour = Number(month) + day + year;
+
    if (isPalindrome(formatOne)) {
       return `${day}-${month}-${year}`
    }
    else if (isPalindrome(formatTwo)) {
+     
       return `${day}-${month}-${year.split("").slice(2, 4).join("")}`
    }
    else if (isPalindrome(formatThree)) {
       return `${year}-${month}-${day}`
+   }
+   else if (isPalindrome(formatFour)) {
+      return `${Number(month)}-${day}-${year}`
    }
    else {
       return false;
@@ -106,7 +139,9 @@ const findNearestPalindromeDate = (day, month, year) => {
       if (month1 < 10) {
          month1String = "0" + month1String;
       } 
+
       const palindromeDate = checkDiffDateCombinations(day1String, month1String, year1String);
+
       if (palindromeDate) {
          return [palindromeDate, i];
       }
