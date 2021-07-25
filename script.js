@@ -1,16 +1,9 @@
 const birthdayDate = document.getElementsByClassName('bday')[0];
 
-const text ="Hello Vishnnu viswanath, I'm really sorry to let you know that you're birthday date isn't lucky as it is not a palindrome";
-var synth = window.speechSynthesis;
-var voices = synth.getVoices();
-console.log("voices are ", voices)
-for(let i=0;i< voices.length;i++) {
-   console.log(voices[i]);
-}
+const text ="Mukesh";
+
 birthdayDate.addEventListener('change', (e) => {
-  
-   
-   extractDate(e.target.value);
+     extractDate(e.target.value);
 })
 
 const totalDaysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
@@ -23,12 +16,13 @@ const extractDate = (date) => {
    console.log(day, month, year);
    const palinDromedate = checkDiffDateCombinations(day, month, year);
    if (palinDromedate) {
-     
+      console.log(palinDromedate)
    } else {
       const [nearestPlaindromeDate, i] = findNearestPalindromeDate(day, month, year);
+      console.log(nearestPlaindromeDate, i)
       const Speech = new SpeechSynthesisUtterance(text); 
       Speech.volume = 1;
-      Speech.rate = 4;
+      Speech.rate = 1;
       Speech.pitch = 1;
       window.speechSynthesis.speak(Speech);
      
@@ -40,7 +34,6 @@ const checkDiffDateCombinations = (day, month, year) => {
    const formatOne = day + month + year;
    const formatTwo = day + month + year.split("").slice(2, 4).join("");
    const formatThree = year + month + day;
-   console.log(formatOne, formatTwo, formatThree);
    if (isPalindrome(formatOne)) {
       return `${day}-${month}-${year}`
    }
@@ -107,7 +100,6 @@ const findNearestPalindromeDate = (day, month, year) => {
       if (month1 < 10) {
          month1String = "0" + month1String;
       } 
-      console.log("day is", day1String, "month is", month1String, "year is", year1String);
       const palindromeDate = checkDiffDateCombinations(day1String, month1String, year1String);
       if (palindromeDate) {
          return [palindromeDate, i];
