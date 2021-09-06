@@ -1,2 +1,2 @@
 # Birthday Palindrome Check App
-### Built with Vanilla JS
+### A simple qeb app built with Vanilla JS to check if your birthdate is a palindrome or not.
